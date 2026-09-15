@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#f8f1e7">
+  <title>Алмаз & Мээрим — Үйлөнүү үлпөт тою</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    :root {
+      --cream: #f8f1e7;
+      --ivory: #fffdf9;
+      --gold: #c6a15b;
+      --gold-dark: #9a7537;
+      --brown: #4b4036;
+      --black: #241f1a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+
+    button, input, select { font: inherit; }
+
+    /* ---------- ENVELOPE OPENING ---------- */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 45%, #fffaf2 0%, #f5eadb 55%, #e8d8c1 100%);
+      transition: opacity 1s ease, visibility 1s ease;
+      overflow: hidden;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 12px 4px rgba(198,161,91,.55);
+      animation: floatSparkle linear infinite;
+      opacity: .7;
+    }
+
+    @keyframes floatSparkle {
+      from { transform: translateY(110vh) scale(.4); opacity: 0; }
+      20% { opacity: .8; }
+      80% { opacity: .7; }
+      to { transform: translateY(-15vh) scale(1.2); opacity: 0; }
+    }
+
+    .envelope-wrap {
+      width: min(88vw, 390px);
+      text-align: center;
+      position: relative;
+    }
+
+    .envelope-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 28px;
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.45 / 1;
+      perspective: 1000px;
+      filter: drop-shadow(0 20px 28px rgba(80,60,30,.18));
+    }
+
+    .env-back {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #fffdf9, #eadcc9);
+      border: 1px solid rgba(154,117,55,.55);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .env-back::before,
+    .env-back::after {
+      content: "";
+      position: absolute;
+      width: 45%;
+      height: 45%;
+      border: 1px solid rgba(198,161,91,.55);
+    }
+
+    .env-back::before {
+      left: 8px; top: 8px;
+      border-right: 0; border-bottom: 0;
+    }
+
+    .env-back::after {
+      right: 8px; bottom: 8px;
+      border-left: 0; border-top: 0;
+    }
+
+    .env-pocket {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, transparent 49%, #f1e7d9 50%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      z-index: 3;
+      border-bottom: 1px solid rgba(154,117,55,.3);
+    }
+
+    .env-flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 58%;
+      background: linear-gradient(155deg, #fffdf9, #e7d8c4);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      z-index: 5;
+      transition: transform 1.15s cubic-bezier(.2,.8,.2,1);
+      backface-visibility: hidden;
+      border-top: 1px solid rgba(154,117,55,.35);
+    }
+
+    .envelope.open .env-flap {
+      transform: rotateX(180deg);
+    }
+
+    .wax {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      z-index: 7;
+      display: grid;
+      place-items: center;
+      color: #fff9eb;
+      background: radial-gradient(circle at 35% 30%, #e1bd76, #a97828);
+      border: 3px solid rgba(255,255,255,.65);
+      box-shadow: 0 4px 12px rgba(90,60,20,.25);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 25px;
+      transition: opacity .4s ease .6s;
+    }
+
+    .envelope.open .wax { opacity: 0; }
+
+    .env-names {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      padding-top: 25%;
+      color: var(--gold-dark);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(27px, 8vw, 40px);
+      font-weight: 600;
+    }
+
+    .open-btn {
+      margin-top: 34px;
+      border: 1px solid var(--gold);
+      color: var(--gold-dark);
+      background: rgba(255,255,255,.62);
+      padding: 14px 25px;
+      border-radius: 999px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: .3s ease;
+      box-shadow: 0 8px 22px rgba(120,90,40,.12);
+    }
+
+    .open-btn:hover { background: #fff; transform: translateY(-2px); }
+
+    .open-btn:disabled { opacity: .5; }
+
+    /* ---------- SITE ---------- */
+    .site {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(198,161,91,.12), transparent 28%),
+        linear-gradient(#fffdf9, #f8f1e7);
+    }
+
+    .section {
+      width: min(100%, 720px);
+      margin: auto;
+      padding: 72px 22px;
+      position: relative;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(.85);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(20,14,8,.72), rgba(20,14,8,.04) 62%),
+        linear-gradient(to bottom, rgba(255,255,255,.15), transparent 30%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      padding: 60px 25px 72px;
+    }
+
+    .small-caps {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(62px, 18vw, 105px);
+      line-height: .75;
+      font-weight: 500;
+      margin: 25px 0 28px;
+    }
+
+    .hero .date {
+      font-size: 15px;
+      letter-spacing: 5px;
+    }
+
+    .scroll-hint {
+      margin-top: 35px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      opacity: .85;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: 25px;
+      text-align: center;
+      margin: 8px 0 20px;
+    }
+
+    .center { text-align: center; }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 12vw, 65px);
+      font-weight: 500;
+      line-height: .95;
+      margin: 12px 0 18px;
+      color: var(--black);
+    }
+
+    .intro-text {
+      max-width: 570px;
+      margin: auto;
+      line-height: 1.9;
+      font-size: 14px;
+      color: #665b50;
+    }
+
+    .gold-line {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 25px auto;
+    }
+
+    /* Couple */
+    .couple-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .portrait {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      width: 100%;
+      border: 7px solid #fff;
+      box-shadow: 0 10px 28px rgba(70,50,30,.12);
+    }
+
+    .portrait:first-child { object-position: center top; }
+    .portrait:last-child { object-position: center top; }
+
+    .names-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 29px;
+      color: var(--gold-dark);
+    }
+
+    .heart { font-size: 20px; }
+
+    /* Date card */
+    .date-card {
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(198,161,91,.48);
+      padding: 38px 18px;
+      box-shadow: 0 14px 35px rgba(80,55,25,.08);
+      position: relative;
+    }
+
+    .big-date {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--black);
+      font-size: 66px;
+      line-height: .8;
+      margin: 18px 0;
+    }
+
+    .month {
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--gold-dark);
+    }
+
+    .time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 31px;
+      color: var(--black);
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .count-box {
+      padding: 14px 4px;
+      border-top: 1px solid rgba(198,161,91,.45);
+      border-bottom: 1px solid rgba(198,161,91,.45);
+    }
+
+    .count-number {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: var(--black);
+    }
+
+    .count-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #786c60;
+    }
+
+    /* Location */
+    .location-card {
+      background: #fff;
+      padding: 35px 20px;
+      text-align: center;
+      border: 1px solid rgba(198,161,91,.35);
+      box-shadow: 0 12px 30px rgba(60,45,30,.07);
+    }
+
+    .pin {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .place {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 37px;
+      color: var(--black);
+      margin: 8px 0;
+    }
+
+    .map-btn {
+      display: inline-block;
+      margin-top: 22px;
+      text-decoration: none;
+      color: #fff;
+      background: var(--gold-dark);
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1.18;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .gallery img:nth-child(1) {
+      grid-column: span 2;
+      aspect-ratio: 16 / 10;
+    }
+
+    /* RSVP */
+    .rsvp {
+      background: linear-gradient(145deg, #fffdf9, #f2e6d6);
+      border: 1px solid rgba(198,161,91,.4);
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .form input, .form select {
+      width: 100%;
+      border: 1px solid rgba(130,105,70,.25);
+      background: rgba(255,255,255,.8);
+      padding: 15px;
+      outline: none;
+      color: var(--brown);
+    }
+
+    .form input:focus, .form select:focus {
+      border-color: var(--gold);
+    }
+
+    .submit-btn {
+      border: 0;
+      background: var(--gold-dark);
+      color: white;
+      padding: 15px;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    .note {
+      font-size: 10px;
+      line-height: 1.6;
+      color: #807366;
+      margin-top: 10px;
+    }
+
+    /* Music */
+    .music-btn {
+      position: fixed;
+      right: 16px;
+      bottom: 18px;
+      z-index: 50;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.8);
+      background: rgba(154,117,55,.92);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(60,40,15,.25);
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 20px 80px;
+      color: #75685a;
+    }
+
+    footer .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      color: var(--gold-dark);
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 700px) {
+      .section { padding-left: 30px; padding-right: 30px; }
+      .hero { max-width: 720px; margin: auto; }
+      body { background: #e8dfd2; }
+      .site { max-width: 720px; margin: auto; box-shadow: 0 0 50px rgba(60,40,20,.12); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- OPENING ENVELOPE -->
+  <div class="intro" id="intro">
+    <div class="sparkles" id="sparkles"></div>
+
+    <div class="envelope-wrap">
+      <div class="envelope-title">Wedding Invitation</div>
+
+      <div class="envelope" id="envelope">
+        <div class="env-back"></div>
+
+        <div class="env-names">Алмаз &amp; Мээрим</div>
+
+        <div class="env-pocket"></div>
+        <div class="env-flap"></div>
+
+        <div class="wax">A&nbsp;♡&nbsp;M</div>
+      </div>
+
+      <button class="open-btn" id="openBtn">ЧАКЫРУУ КАТЫН АЧУУ</button>
+    </div>
+  </div>
+
+  <main class="site">
+
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-photo" src="meerim.jpg" alt="Мээрим">
+      <div class="hero-content">
+        <div class="small-caps">Биз үйлөнөбүз</div>
+        <h1>Алмаз<br>&amp;<br>Мээрим</h1>
+        <div class="date">25 · 09 · 2026</div>
+        <div class="scroll-hint">↓ ТӨМӨН СҮРҮҢҮЗ</div>
+      </div>
+    </section>
+
+    <!-- INVITATION -->
+    <section class="section center reveal">
+      <div class="ornament">✦</div>
+      <div class="small-caps">Сиздерди чакырабыз</div>
+      <h2>Биздин<br>өзгөчө күнүбүзгө</h2>
+      <div class="gold-line"></div>
+      <p class="intro-text">
+        Урматтуу туугандар, жакындар жана достор!
+        Сиздерди жашообуздагы эң маанилүү жана бактылуу күндөрдүн бири —
+        үйлөнүү үлпөт тоюбузга чын жүрөктөн чакырабыз.
+        Бул өзгөчө күнү биздин кубанычыбызды тең бөлүшүп,
+        ак тилегиңиздер менен бизге күбө болуп кетсеңиздер,
+        биз үчүн чоң сыймык.
+      </p>
+    </section>
+
+    <!-- COUPLE -->
+    <section class="section center reveal">
+      <div class="small-caps">Our Story</div>
+      <h2>Алмаз &amp; Мээрим</h2>
+      <div class="couple-grid">
+        <img class="portrait" src="meerim.jpg" alt="Мээрим">
+        <img class="portrait" src="almaz.jpg" alt="Алмаз">
+      </div>
+      <div class="names-row">
+        <span>Алмаз</span>
+        <span class="heart">♡</span>
+        <span>Мээрим</span>
+      </div>
+    </section>
+
+    <!-- DATE -->
+    <section class="section reveal">
+      <div class="date-card center">
+        <div class="small-caps">Save the Date</div>
+        <div class="big-date">25</div>
+        <div class="month">Сентябрь · 2026</div>
+        <div class="gold-line"></div>
+        <div class="time">Саат 19:00</div>
+
+        <div class="countdown" id="countdown">
+          <div class="count-box">
+            <span class="count-number" id="days">00</span>
+            <span class="count-label">Күн</span>
+          </div>
+          <div class="count-box">
+            <span class="count-number" id="hours">00</span>
+            <span class="count-label">Саат</span>
+          </div>
+          <div class="count-box">
+            <span class="count-number" id="minutes">00</span>
+            <span class="count-label">Мүнөт</span>
+          </div>
+          <div class="count-box">
+            <span class="count-number" id="seconds">00</span>
+            <span class="count-label">Секунд</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="section reveal">
+      <div class="location-card">
+        <div class="pin">⌖</div>
+        <div class="small-caps">Той өтүүчү жер</div>
+        <div class="place">Ресторан «Дастаркон»</div>
+        <p>Кырк-Кыз айылы</p>
+
+        <!-- Так дарек чыкканда бул шилтемени жаңыртабыз -->
+        <a class="map-btn"
+           href="https://www.google.com/maps/search/?api=1&query=Ресторан+Дастаркон,+Кырк-Кыз+айылы"
+           target="_blank" rel="noopener">
+          📍 КАРТАДАН КӨРҮҮ
+        </a>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section reveal">
+      <div class="center">
+        <div class="small-caps">Memories</div>
+        <h2>Биздин көз ирмемдер</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="gallery">
+        <img src="meerim.jpg" alt="Мээрим">
+        <img src="almaz.jpg" alt="Алмаз">
+        <img src="meerim.jpg" alt="Мээрим">
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section reveal">
+      <div class="rsvp section">
+        <div class="center">
+          <div class="small-caps">RSVP</div>
+          <h2>Сизди күтөбүз</h2>
+          <div class="gold-line"></div>
+          <p class="intro-text">
+            Тойго катышаарыңызды билдирип коюңуз.
+          </p>
+        </div>
+
+        <form class="form" id="rsvpForm">
+          <input type="text" id="guestName" placeholder="Аты-жөнү" required>
+
+          <select id="attendance" required>
+            <option value="">Катышууңузду тандаңыз</option>
+            <option value="Ооба, сөзсүз келем">Ооба, сөзсүз келем</option>
+            <option value="Тилекке каршы, келе албайм">Тилекке каршы, келе албайм</option>
+          </select>
+
+          <select id="guests" required>
+            <option value="">Канча адам болуп келесиз?</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+
+          <button class="submit-btn" type="submit">ЖООП ЖӨНӨТҮҮ</button>
+        </form>
+
+        <div class="note">
+          Эскертүү: азыркы версияда RSVP маалыматтары сайттын ичинде гана көрсөтүлөт.
+          Аларды сизге Telegram/WhatsApp/Google Sheets аркылуу автоматтык жөнөтүү үчүн
+          кийинки этапта байланыш системасын кошобуз.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="ornament">✦</div>
+      <div class="footer-names">Алмаз &amp; Мээрим</div>
+      <p>25.09.2026 · 19:00</p>
+      <p>Сүйүү менен күтүп калабыз 🤍</p>
+    </footer>
+
+  </main>
+
+  <!-- MUSIC -->
+  <audio id="music" loop preload="none">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" id="musicBtn" aria-label="Музыканы күйгүзүү">♪</button>
+
+  <script>
+    /* ---------- SPARKLES ---------- */
+    const sparkles = document.getElementById('sparkles');
+
+    for (let i = 0; i < 42; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.animationDuration = (5 + Math.random() * 8) + 's';
+      s.style.animationDelay = (-Math.random() * 10) + 's';
+      s.style.width = s.style.height = (2 + Math.random() * 4) + 'px';
+      sparkles.appendChild(s);
+    }
+
+    /* ---------- ENVELOPE ---------- */
+    const intro = document.getElementById('intro');
+    const envelope = document.getElementById('envelope');
+    const openBtn = document.getElementById('openBtn');
+
+    openBtn.addEventListener('click', () => {
+      openBtn.disabled = true;
+      envelope.classList.add('open');
+
+      setTimeout(() => {
+        intro.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 1250);
+    });
+
+    document.body.style.overflow = 'hidden';
+
+    /* ---------- COUNTDOWN ---------- */
+    const target = new Date('2026-09-25T19:00:00').getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      let diff = target - now;
+
+      if (diff < 0) diff = 0;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* ---------- SCROLL REVEAL ---------- */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ---------- MUSIC ---------- */
+    const music = document.getElementById('music');
+    const musicBtn = document.getElementById('musicBtn');
+    let playing = false;
+
+    musicBtn.addEventListener('click', async () => {
+      try {
+        if (!playing) {
+          await music.play();
+          playing = true;
+          musicBtn.textContent = 'Ⅱ';
+          musicBtn.setAttribute('aria-label', 'Музыканы өчүрүү');
+        } else {
+          music.pause();
+          playing = false;
+          musicBtn.textContent = '♪';
+          musicBtn.setAttribute('aria-label', 'Музыканы күйгүзүү');
+        }
+      } catch (e) {
+        alert('Музыка файлы табылган жок. GitHubʼка music.mp3 файлын да жүктөңүз.');
+      }
+    });
+
+    /* ---------- RSVP ---------- */
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('guestName').value.trim();
+      const attendance = document.getElementById('attendance').value;
+      const guests = document.getElementById('guests').value;
+
+      alert(
+        'Рахмат, ' + name + '!\\n\\n' +
+        attendance + '\\n' +
+        'Коноктор: ' + guests
+      );
+
+      this.reset();
+    });
+  </script>
+</body>
+</html>
