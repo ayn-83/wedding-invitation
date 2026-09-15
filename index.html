@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="ky">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Элмира & Нурбек — Үйлөнүү тою</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
 
 *{
   box-sizing:border-box;
@@ -15,34 +16,43 @@
 }
 
 :root{
-  --cream:#f8f2e8;
-  --paper:#fffaf3;
-  --gold:#b28a45;
-  --gold2:#d7b878;
-  --brown:#4b392b;
+  --cream:#f7f0e5;
+  --paper:#fffaf2;
+  --gold:#b58a45;
+  --gold-light:#dfc58f;
+  --brown:#4d3929;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   background:var(--cream);
   color:var(--brown);
   font-family:'Montserrat',sans-serif;
-  min-height:100vh;
   overflow-x:hidden;
 }
 
-/* ЭКРАН 1 — КОНВЕРТ */
+/* ================= ENVELOPE ================= */
+
 #opening{
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
-  padding:25px;
+  align-items:center;
   position:relative;
   overflow:hidden;
+  padding:20px;
+}
+
+.envelope-wrap{
+  width:min(390px,92vw);
+  position:relative;
 }
 
 .envelope{
-  width:min(390px,92vw);
+  width:100%;
   height:270px;
   position:relative;
   perspective:1200px;
@@ -51,10 +61,10 @@ body{
 .envelope-body{
   position:absolute;
   inset:0;
-  background:linear-gradient(145deg,#ead7b5,#c9a86b);
+  background:linear-gradient(145deg,#ead6ae,#c29b5b);
   border-radius:5px;
-  box-shadow:0 20px 50px rgba(76,55,30,.25);
-  overflow:hidden;
+  box-shadow:0 20px 50px rgba(70,50,25,.25);
+  z-index:1;
 }
 
 .envelope-body:before{
@@ -62,8 +72,40 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(35deg,transparent 49%,rgba(255,255,255,.25) 50%,transparent 51%),
-    linear-gradient(-35deg,transparent 49%,rgba(255,255,255,.25) 50%,transparent 51%);
+    linear-gradient(35deg,transparent 49%,rgba(255,255,255,.22) 50%,transparent 51%),
+    linear-gradient(-35deg,transparent 49%,rgba(255,255,255,.22) 50%,transparent 51%);
+}
+
+.letter{
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:25px;
+  height:220px;
+  background:var(--paper);
+  border:1px solid var(--gold-light);
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  transition:transform 1.3s cubic-bezier(.2,.8,.2,1);
+}
+
+.envelope.open .letter{
+  transform:translateY(-145px);
+}
+
+.letter-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+.letter-sub{
+  font-size:15px;
 }
 
 .flap{
@@ -71,11 +113,11 @@ body{
   top:0;
   left:0;
   width:100%;
-  height:145px;
-  background:linear-gradient(145deg,#e5ce9f,#b9904d);
+  height:150px;
+  background:linear-gradient(145deg,#e5ce9c,#b88c49);
   clip-path:polygon(0 0,100% 0,50% 100%);
   transform-origin:top center;
-  transition:transform 1s cubic-bezier(.2,.8,.2,1);
+  transition:transform 1s ease;
   z-index:5;
 }
 
@@ -85,76 +127,50 @@ body{
 
 .seal{
   position:absolute;
-  z-index:10;
-  left:50%;
   top:105px;
+  left:50%;
   transform:translateX(-50%);
-  width:62px;
-  height:62px;
+  width:64px;
+  height:64px;
   border-radius:50%;
-  background:#a97932;
+  background:#a87932;
   border:3px solid #f1d99e;
-  color:#fff7e5;
+  color:#fff8e8;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   font-family:'Cormorant Garamond',serif;
-  font-size:29px;
+  font-size:26px;
+  z-index:10;
   box-shadow:0 5px 15px rgba(0,0,0,.2);
-  transition:opacity .5s,transform .5s;
+  transition:.5s;
 }
 
 .envelope.open .seal{
   opacity:0;
-  transform:translateX(-50%) scale(.3);
-}
-
-.letter{
-  position:absolute;
-  z-index:6;
-  left:18px;
-  right:18px;
-  top:25px;
-  height:220px;
-  background:var(--paper);
-  border:1px solid var(--gold2);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-  transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
-}
-
-.envelope.open .letter{
-  transform:translateY(-150px);
-}
-
-.letter-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:31px;
-  color:var(--gold);
-  margin-bottom:10px;
-}
-
-.letter-sub{
-  font-size:16px;
+  transform:translateX(-50%) scale(.2);
 }
 
 .open-button{
   position:absolute;
-  z-index:20;
-  bottom:-75px;
   left:50%;
+  bottom:-75px;
   transform:translateX(-50%);
+  z-index:30;
+  border:0;
   background:var(--gold);
   color:white;
-  border:0;
-  padding:14px 25px;
+  padding:14px 28px;
   border-radius:30px;
   font-family:'Montserrat',sans-serif;
   font-size:14px;
-  box-shadow:0 8px 20px rgba(100,70,30,.2);
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(80,55,25,.25);
+  -webkit-tap-highlight-color:transparent;
+}
+
+.open-button:active{
+  transform:translateX(-50%) scale(.96);
 }
 
 .envelope.open .open-button{
@@ -162,36 +178,30 @@ body{
   pointer-events:none;
 }
 
-/* ЖАЛТЫРАГАН БӨЛҮКТӨР */
-.sparkle{
-  position:absolute;
-  width:5px;
-  height:5px;
-  background:#d7b878;
-  border-radius:50%;
-  opacity:0;
-}
+/* ================= MAIN ================= */
 
-.envelope.open ~ .sparkles .sparkle{
-  animation:spark 2s ease-out forwards;
-}
-
-@keyframes spark{
-  0%{opacity:0;transform:translateY(0) scale(.2)}
-  30%{opacity:1}
-  100%{opacity:0;transform:translateY(-180px) scale(1.5)}
-}
-
-/* НЕГИЗГИ БЕТ */
 #main{
   display:none;
-  min-height:100vh;
   animation:fadeIn 1.5s ease;
 }
 
 @keyframes fadeIn{
   from{opacity:0}
   to{opacity:1}
+}
+
+.music-button{
+  position:fixed;
+  right:18px;
+  top:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid var(--gold-light);
+  background:var(--paper);
+  color:var(--gold);
+  font-size:20px;
+  z-index:100;
 }
 
 .hero{
@@ -201,43 +211,41 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:50px 20px;
-  position:relative;
+  padding:40px 20px;
 }
 
 .small{
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-size:12px;
-  margin-bottom:25px;
   color:var(--gold);
+  letter-spacing:4px;
+  font-size:11px;
+  text-transform:uppercase;
+  margin-bottom:25px;
 }
 
 .names{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(55px,15vw,90px);
-  font-weight:500;
-  color:var(--gold);
   line-height:.9;
+  color:var(--gold);
 }
 
 .amp{
-  font-size:.6em;
   color:var(--brown);
-  margin:8px;
-}
-
-.date{
-  margin-top:35px;
-  font-family:'Cormorant Garamond',serif;
-  font-size:27px;
+  font-size:.6em;
+  margin:0 8px;
 }
 
 .line{
   width:70px;
   height:1px;
-  background:var(--gold2);
-  margin:20px auto;
+  background:var(--gold-light);
+  margin:25px auto;
+}
+
+.date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:27px;
+  margin-top:5px;
 }
 
 section{
@@ -249,8 +257,8 @@ section{
 
 .title{
   font-family:'Cormorant Garamond',serif;
-  color:var(--gold);
   font-size:40px;
+  color:var(--gold);
   margin-bottom:30px;
 }
 
@@ -261,8 +269,8 @@ section{
 
 .hosts{
   font-family:'Cormorant Garamond',serif;
-  font-size:29px;
-  margin-top:15px;
+  font-size:32px;
+  color:var(--brown);
 }
 
 .info{
@@ -280,38 +288,27 @@ section{
 .card b{
   display:block;
   font-family:'Cormorant Garamond',serif;
-  font-size:25px;
+  font-size:27px;
   color:var(--gold);
   margin-bottom:8px;
-}
-
-.music{
-  position:fixed;
-  right:18px;
-  top:18px;
-  z-index:100;
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  border:1px solid var(--gold2);
-  background:var(--paper);
-  color:var(--gold);
-  font-size:20px;
 }
 
 .footer{
   padding:80px 20px;
   text-align:center;
   font-family:'Cormorant Garamond',serif;
-  font-size:25px;
+  font-size:27px;
   color:var(--gold);
 }
+
+/* ================= PETALS ================= */
 
 .petals{
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:90;
+  overflow:hidden;
 }
 
 .petal{
@@ -319,10 +316,10 @@ section{
   top:-30px;
   width:10px;
   height:16px;
-  background:#e7c9bd;
+  background:#e4c6ba;
   border-radius:70% 30% 70% 30%;
-  animation:fall linear forwards;
   opacity:.8;
+  animation:fall linear forwards;
 }
 
 @keyframes fall{
@@ -332,6 +329,7 @@ section{
 }
 
 @media(max-width:500px){
+
   .envelope{
     height:245px;
   }
@@ -353,46 +351,302 @@ section{
 
 <body>
 
+<!-- АЧЫЛГАНГА ЧЕЙИНКИ БӨЛҮК -->
+
 <div id="opening">
 
-  <div class="envelope" id="envelope">
+  <div class="envelope-wrap">
 
-    <div class="envelope-body"></div>
+    <div class="envelope" id="envelope">
 
-    <div class="letter">
-      <div>
-        <div class="letter-title">Элмира & Нурбек</div>
-        <div class="letter-sub">Үйлөнүү тоюна чакырабыз</div>
+      <div class="envelope-body"></div>
+
+      <div class="letter">
+        <div>
+          <div class="letter-title">
+            Элмира & Нурбек
+          </div>
+
+          <div class="letter-sub">
+            Үйлөнүү тоюна чакырабыз
+          </div>
+        </div>
       </div>
+
+      <div class="flap"></div>
+
+      <div class="seal">
+        E & N
+      </div>
+
+      <button
+        type="button"
+        class="open-button"
+        id="openButton">
+        Чакырууны ачуу
+      </button>
+
     </div>
 
-    <div class="flap"></div>
-
-    <div class="seal">E & N</div>
-
-    <button class="open-button" onclick="openInvitation()">
-      Чакырууны ачуу
-    </button>
-
-  </div>
-
-  <div class="sparkles">
-    <span class="sparkle" style="left:20%;top:60%"></span>
-    <span class="sparkle" style="left:35%;top:70%"></span>
-    <span class="sparkle" style="left:70%;top:65%"></span>
-    <span class="sparkle" style="left:80%;top:50%"></span>
-    <span class="sparkle" style="left:50%;top:75%"></span>
   </div>
 
 </div>
 
+
+<!-- НЕГИЗГИ БЕТ -->
+
 <div id="main">
 
-  <button class="music" id="musicBtn" onclick="toggleMusic()">♫</button>
+  <button
+    type="button"
+    class="music-button"
+    id="musicButton">
+    ♫
+  </button>
 
   <div class="petals" id="petals"></div>
 
   <div class="hero">
-    <
+
+    <div class="small">
+      Биздин сүйүү баяныбыз
+    </div>
+
+    <div class="names">
+      Элмира
+      <span class="amp">&</span>
+      Нурбек
+    </div>
+
+    <div class="line"></div>
+
+    <div class="date">
+      23 СЕНТЯБРЬ 2026
+    </div>
+
+    <div class="date">
+      18:00
+    </div>
+
+  </div>
+
+
+  <section>
+
+    <div class="title">
+      Кымбаттуу коноктор!
+    </div>
+
+    <div class="text">
+      Сиздерди жашообуздагы эң маанилүү жана
+      бактылуу күндөрдүн бирине —
+      үйлөнүү тоюбузга чын жүрөктөн чакырабыз.
+
+      <br><br>
+
+      Бул өзгөчө күндө сиздер менен бирге болуп,
+      кубанычыбызды бөлүшүү биз үчүн чоң сыймык.
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="title">
+      Той ээлери
+    </div>
+
+    <div class="hosts">
+      Арстан & Жамал
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="title">
+      Тойдун дареги
+    </div>
+
+    <div class="info">
+
+      <div class="card">
+        <b>23.09.2026</b>
+        Шаршемби күнү
+      </div>
+
+      <div class="card">
+        <b>18:00</b>
+        Конокторду күтөбүз
+      </div>
+
+      <div class="card">
+        <b>«Жазгүл» кафеси</b>
+        Көк-Жар айылы
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="title">
+      Сиздерди күтөбүз
+    </div>
+
+    <div class="text">
+      Биздин кубанычыбызга ортоктош болуп,
+      ак тилек-батаңыздарды арнаганыңыздар
+      биз үчүн эң чоң белек.
+    </div>
+
+  </section>
+
+
+  <div class="footer">
+    Сүйүү менен,
+    <br>
+    Элмира & Нурбек
+  </div>
+
+</div>
+
+
+<script>
+
+/* ================= АЧУУ КНОПКАСЫ ================= */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  const openButton = document.getElementById("openButton");
+
+  openButton.addEventListener("click", function(){
+
+    const envelope = document.getElementById("envelope");
+    const opening = document.getElementById("opening");
+    const main = document.getElementById("main");
+
+    envelope.classList.add("open");
+
+    setTimeout(function(){
+
+      opening.style.display = "none";
+      main.style.display = "block";
+
+      createPetals();
+
+      window.scrollTo(0,0);
+
+    },1500);
+
+  });
+
+
+  /* ================= МУЗЫКА ================= */
+
+  const musicButton = document.getElementById("musicButton");
+
+  let audioContext = null;
+  let oscillator = null;
+  let gainNode = null;
+  let musicOn = false;
+
+  musicButton.addEventListener("click", function(){
+
+    if(!audioContext){
+
+      audioContext =
+        new (window.AudioContext ||
+        window.webkitAudioContext)();
+
+      oscillator =
+        audioContext.createOscillator();
+
+      gainNode =
+        audioContext.createGain();
+
+      oscillator.type = "sine";
+
+      oscillator.frequency.value = 261.63;
+
+      gainNode.gain.value = 0.025;
+
+      oscillator.connect(gainNode);
+
+      gainNode.connect(audioContext.destination);
+
+      oscillator.start();
+
+      musicOn = true;
+
+      musicButton.textContent = "♫";
+
+      return;
+    }
+
+    if(musicOn){
+
+      gainNode.gain.value = 0;
+
+      musicOn = false;
+
+      musicButton.textContent = "🔇";
+
+    }else{
+
+      gainNode.gain.value = 0.025;
+
+      musicOn = true;
+
+      musicButton.textContent = "♫";
+
+    }
+
+  });
+
+});
+
+
+/* ================= ГҮЛ ЖАПЫРАКТАР ================= */
+
+function createPetals(){
+
+  const container =
+    document.getElementById("petals");
+
+  for(let i=0;i<25;i++){
+
+    const petal =
+      document.createElement("div");
+
+    petal.className = "petal";
+
+    petal.style.left =
+      Math.random()*100 + "%";
+
+    petal.style.animationDuration =
+      (5 + Math.random()*6) + "s";
+
+    petal.style.animationDelay =
+      Math.random()*3 + "s";
+
+    petal.style.transform =
+      "rotate(" +
+      Math.random()*360 +
+      "deg)";
+
+    container.appendChild(petal);
+  }
+
+}
+
+</script>
+
+</body>
+</html>
 
 
