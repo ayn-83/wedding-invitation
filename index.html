@@ -2,219 +2,861 @@
 <html lang="ky">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Чынгыз & Жазгүл</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#faf6ee;color:#806c4d;font-family:Arial,sans-serif}
-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px 18px}
-.wrap{width:100%;max-width:600px;text-align:center}
-h1,h2{font-family:Georgia,serif;color:#9a7d48;font-weight:400}
-h1{font-size:42px}
-h2{font-size:30px;line-height:1.35}
-.gold{width:65px;height:1px;background:#c8ad70;margin:18px auto}
-p{line-height:1.8}
-.music{position:fixed;right:18px;top:18px;width:55px;height:55px;border-radius:50%;border:1px solid #cbb98f;background:white;color:#a18751;font-size:20px;z-index:99}
-.envelope{width:100%;aspect-ratio:1.7;background:#eee5d6;border:1px solid #cdbb96;border-radius:7px;position:relative;box-shadow:0 20px 45px #0001}
-.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49.5%,#fffaf2 50%),linear-gradient(215deg,transparent 49.5%,#fffaf2 50%)}
-.heart{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:48px;z-index:2}
-.open{margin-top:28px;padding:14px 28px;border:1px solid #c5a967;background:#fffaf1;color:#927743;border-radius:30px}
-#video{display:none;width:100%;border-radius:10px}
-#site{display:none}
-.card{padding:45px 25px;border:1px solid #ddcba7;border-radius:14px;background:#fffdf8;box-shadow:0 15px 40px #00000010}
-.love{font-family:Georgia,serif;font-size:22px;line-height:1.7}
-.date{font-family:Georgia,serif;font-size:32px;color:#96794a;margin:18px 0 5px}
-.time{font-size:28px;color:#a08350}
-.venue{font-family:Georgia,serif;font-size:27px;color:#96794a;margin:18px 0 8px}
-.map{display:inline-block;margin-top:22px;padding:14px 25px;border-radius:30px;background:#b39455;color:white;text-decoration:none;font-size:12px}
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:25px}
-.box{border:1px solid #ddcba7;background:#fffaf0;padding:12px 2px;border-radius:8px}
-.num{display:block;font-family:Georgia,serif;font-size:25px;color:#96794a}
-.lab{font-size:8px}
-input,select{width:100%;padding:14px;border:1px solid #d8c6a3;border-radius:8px;background:white;color:#66583f}
-label{display:block;text-align:left;font-size:12px;margin:17px 0 7px}
-.radio{text-align:left;font-size:13px;margin:10px 0}
-.radio input{width:auto}
-.send{width:100%;border:0;border-radius:30px;background:#b39455;color:white;padding:15px;margin-top:22px}
-.names{font-family:Georgia,serif;font-size:29px;color:#927543;margin-top:18px}
-.couple{width:100%;border-radius:12px;display:block}
-.small{font-size:11px;letter-spacing:3px;color:#a18a61}
-@media(max-width:400px){h1{font-size:36px}h2{font-size:27px}.card{padding:38px 18px}}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#fbf8f2;
+  color:#6d5637;
+  font-family:Georgia,"Times New Roman",serif;
+  overflow-x:hidden;
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:35px 18px;
+  position:relative;
+}
+
+.content{
+  width:100%;
+  max-width:520px;
+  text-align:center;
+}
+
+/* GOLD */
+.gold{
+  color:#b08a45;
+}
+
+/* OPENING */
+#opening{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at center,#fffdf9 0%,#f7f0e5 100%);
+  flex-direction:column;
+}
+
+.envelope-box{
+  width:90%;
+  max-width:360px;
+  position:relative;
+}
+
+.closed-envelope{
+  width:100%;
+  height:220px;
+  background:linear-gradient(145deg,#fffdf9,#eee2d0);
+  border:1px solid #c9a96b;
+  box-shadow:0 15px 40px rgba(115,83,35,.18);
+  position:relative;
+  overflow:hidden;
+}
+
+.closed-envelope:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:50% solid transparent;
+  border-right:50% solid transparent;
+  border-top:120px solid #eadcc8;
+}
+
+.seal{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  border:1px solid #c39b55;
+  background:#fffaf2;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  color:#b08a45;
+  z-index:3;
+}
+
+.open-title{
+  margin-top:28px;
+  font-size:28px;
+  letter-spacing:3px;
+  color:#9a7439;
+}
+
+.open-subtitle{
+  margin-top:12px;
+  font-size:16px;
+  line-height:1.7;
+  color:#8b7556;
+}
+
+.open-btn{
+  margin-top:25px;
+  padding:15px 28px;
+  border:1px solid #b89556;
+  border-radius:30px;
+  background:#fffaf2;
+  color:#8c6830;
+  font-family:inherit;
+  font-size:14px;
+  letter-spacing:1.5px;
+  cursor:pointer;
+  box-shadow:0 8px 22px rgba(120,90,40,.12);
+}
+
+.open-btn:active{
+  transform:scale(.98);
+}
+
+/* VIDEO */
+#openingVideo{
+  display:none;
+  width:100%;
+  max-width:520px;
+  height:auto;
+  border-radius:14px;
+  box-shadow:0 15px 45px rgba(80,60,30,.2);
+}
+
+.after-video{
+  display:none;
+  width:100%;
+}
+
+/* MUSIC */
+.music-btn{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:1000;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:1px solid #c5a365;
+  background:rgba(255,250,242,.94);
+  color:#9d7739;
+  font-size:19px;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(90,65,30,.15);
+}
+
+/* IMAGE SECTIONS */
+.image-section{
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+.overlay{
+  width:100%;
+  max-width:520px;
+  padding:35px 24px;
+  background:rgba(255,252,246,.76);
+  border:1px solid rgba(183,145,75,.45);
+  box-shadow:0 12px 35px rgba(100,75,35,.10);
+  text-align:center;
+}
+
+.section-title{
+  font-size:18px;
+  letter-spacing:3px;
+  color:#a17b3e;
+  margin-bottom:22px;
+}
+
+.main-text{
+  font-size:22px;
+  line-height:1.65;
+  color:#745d3d;
+}
+
+.names{
+  font-size:31px;
+  letter-spacing:3px;
+  color:#a27b3d;
+  margin:20px 0;
+}
+
+.divider{
+  width:70px;
+  height:1px;
+  background:#bd9a59;
+  margin:20px auto;
+}
+
+/* COUPLE */
+#couple{
+  background:#faf5ed;
+}
+
+.couple-image{
+  width:100%;
+  display:block;
+  border-radius:8px;
+  box-shadow:0 12px 35px rgba(90,65,30,.18);
+}
+
+/* LOVE STORY */
+#love{
+  background-image:url("история любви.jpg");
+}
+
+/* DATE */
+#date{
+  background-image:url("дата.jpg");
+}
+
+.date{
+  font-size:29px;
+  letter-spacing:3px;
+  color:#9d7638;
+  margin:15px 0;
+}
+
+.time{
+  font-size:32px;
+  color:#a27b3e;
+  letter-spacing:2px;
+}
+
+/* VENUE */
+#venue{
+  background:#fbf7ef;
+}
+
+.venue-name{
+  font-size:26px;
+  line-height:1.5;
+  color:#967039;
+  margin:18px 0;
+}
+
+.address{
+  font-size:17px;
+  line-height:1.8;
+  color:#79664a;
+}
+
+.map-btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 26px;
+  border-radius:30px;
+  border:1px solid #b99451;
+  background:#fffaf2;
+  color:#8d6932;
+  text-decoration:none;
+  letter-spacing:1px;
+}
+
+/* COUNTDOWN */
+#countdown{
+  background-image:url("дата.jpg");
+}
+
+.count-box{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:25px;
+}
+
+.count-item{
+  background:rgba(255,252,247,.88);
+  border:1px solid rgba(183,145,75,.5);
+  padding:13px 4px;
+}
+
+.number{
+  font-size:25px;
+  color:#a17a3c;
+  display:block;
+}
+
+.label{
+  font-size:9px;
+  letter-spacing:1px;
+  color:#897252;
+  margin-top:5px;
+  display:block;
+}
+
+/* RSVP */
+#rsvp{
+  background-image:url("rsvp.jpg");
+}
+
+.form{
+  text-align:left;
+}
+
+.form label{
+  display:block;
+  margin:14px 0 7px;
+  font-size:14px;
+  color:#795f3d;
+}
+
+.form input,
+.form select{
+  width:100%;
+  padding:14px;
+  border:1px solid #cdb88d;
+  border-radius:10px;
+  background:#fffdf9;
+  color:#6f5839;
+  font-family:inherit;
+  font-size:15px;
+  outline:none;
+}
+
+.radio-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.radio-option{
+  display:flex !important;
+  align-items:center;
+  gap:8px;
+  margin:4px 0 !important;
+}
+
+.radio-option input{
+  width:auto;
+}
+
+.send-btn{
+  width:100%;
+  margin-top:22px;
+  padding:15px;
+  border:0;
+  border-radius:30px;
+  background:#b18a48;
+  color:white;
+  font-family:inherit;
+  font-size:15px;
+  letter-spacing:1px;
+  cursor:pointer;
+}
+
+/* FINAL */
+#final{
+  background-image:url("final.jpg");
+}
+
+.final-text{
+  font-size:22px;
+  line-height:1.8;
+  color:#735b3b;
+}
+
+@media(max-width:400px){
+
+  .open-title{
+    font-size:24px;
+  }
+
+  .names{
+    font-size:27px;
+  }
+
+  .main-text{
+    font-size:19px;
+  }
+
+  .date{
+    font-size:24px;
+  }
+
+  .count-box{
+    gap:4px;
+  }
+
+  .number{
+    font-size:21px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<button class="music" id="musicBtn">♫</button>
-<audio id="music" loop><source src="music.mp3" type="audio/mpeg"></audio>
+<!-- MUSIC -->
+<button class="music-btn" id="musicBtn">♫</button>
 
+<audio id="music" loop>
+  <source src="музыка.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- OPENING -->
 <section id="opening">
-<div class="wrap">
-<div class="envelope" id="env">
-  <div class="heart">♡</div>
-</div>
 
-<video id="video" playsinline muted>
-  <source src="envelope.mp4" type="video/mp4">
-</video>
+  <div class="content">
 
-<button class="open" id="openBtn">ЧАКЫРУУ КАТЫН АЧУУ</button>
-</div>
+    <div class="envelope-box" id="closedEnvelope">
+
+      <div class="closed-envelope">
+        <div class="seal">♥</div>
+      </div>
+
+    </div>
+
+    <div class="open-title">
+      ЧЫНГЫЗ & ЖАЗГҮЛ
+    </div>
+
+    <div class="open-subtitle">
+      Үйлөнүү үлпөт тоюбузга<br>
+      сиздерди чакырабыз
+    </div>
+
+    <button class="open-btn" id="openBtn">
+      ЧАКЫРУУ КАТЫН АЧУУ
+    </button>
+
+    <video id="openingVideo" playsinline>
+      <source src="envelope.mp4" type="video/mp4">
+    </video>
+
+  </div>
+
 </section>
 
-<main id="site">
 
-<section>
-<div class="wrap">
-<div class="small">ҮЙЛӨНҮҮ ҮЛПӨТ ТОЮ</div>
-<div class="gold"></div>
-<img class="couple" src="couple.jpg" alt="Чынгыз жана Жазгүл">
-<div class="gold"></div>
-<h1>ЧЫНГЫЗ & ЖАЗГҮЛ</h1>
-<p>Сиздерди биздин кубанычтуу күнүбүзгө чакырабыз.</p>
-<p style="margin-top:15px;font-size:13px">Той ээлери: <b>Айша & Кимия</b></p>
-</div>
+<!-- COUPLE -->
+<section id="couple">
+
+  <div class="content">
+
+    <img
+      src="пара.jpg"
+      class="couple-image"
+      alt="Чынгыз жана Жазгүл"
+    >
+
+  </div>
+
 </section>
 
-<section>
-<div class="wrap"><div class="card">
-<div class="small">LOVE STORY</div><div class="gold"></div>
-<p class="love">
-Кээ бир адамдар жашообузга<br>
-жөн гана жолугуу үчүн эмес,<br>
-өмүр бою жанында болуу үчүн келет.<br><br>
-Биз бири-бирибизди таптык.<br>
-Эми алдыда — бирге баса турган<br>
-бүтүндөй бир өмүр. 🤍
-</p>
-</div></div>
+
+<!-- LOVE STORY -->
+<section id="love" class="image-section">
+
+  <div class="overlay">
+
+    <div class="section-title">
+      LOVE STORY
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="main-text">
+      Кээ бир адамдар жашообузга<br>
+      жөн гана жолугуу үчүн эмес,<br>
+      өмүр бою жанында болуу үчүн келет.
+      <br><br>
+      Биз бири-бирибизди таптык.<br>
+      Эми алдыда — бирге баса турган<br>
+      бүтүндөй бир өмүр. 🤍
+    </div>
+
+  </div>
+
 </section>
 
-<section>
-<div class="wrap"><div class="card">
-<h2>БИЗДИН КУБАНЫЧТУУ КҮНҮБҮЗДӨ<br>СИЗДЕРДИ КҮТӨБҮЗ.</h2>
-<div class="gold"></div>
-<div class="date">23 СЕНТЯБРЬ 2026</div>
-<div class="time">17:00</div>
-</div></div>
+
+<!-- DATE -->
+<section id="date" class="image-section">
+
+  <div class="overlay">
+
+    <div class="section-title">
+      БИЗДИН КУБАНЫЧТУУ КҮНҮБҮЗ
+    </div>
+
+    <div class="main-text">
+      Биздин кубанычтуу күнүбүздө<br>
+      сиздерди күтөбүз.
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="date">
+      23 СЕНТЯБРЬ 2026
+    </div>
+
+    <div class="time">
+      17:00
+    </div>
+
+  </div>
+
 </section>
 
-<section>
-<div class="wrap"><div class="card">
-<h2>БИЗДИН БАКТЫЛУУ КҮНҮБҮЗДҮН ДАРЕГИ</h2>
-<div class="gold"></div>
-<div class="venue">«АЛТЫН КАЗЫНА» РЕСТОРАНЫ</div>
-<p>Жибек жолу көчөсү, 53<br>Бишкек шаары</p>
-<a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Алтын%20Казына%20рестораны%20Жибек%20жолу%2053%20Бишкек">КАРТАДАН КӨРҮҮ</a>
-</div></div>
+
+<!-- VENUE -->
+<section id="venue">
+
+  <div class="overlay">
+
+    <div class="section-title">
+      БИЗДИН БАКТЫЛУУ КҮНҮБҮЗДҮН ДАРЕГИ
+    </div>
+
+    <div class="venue-name">
+      «АЛТЫН КАЗЫНА» РЕСТОРАНЫ
+    </div>
+
+    <div class="address">
+      Жибек жолу көчөсү, 53<br>
+      Бишкек шаары
+    </div>
+
+    <a
+      class="map-btn"
+      href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D1%82%D1%8B%D0%BD+%D0%9A%D0%B0%D0%B7%D1%8B%D0%BD%D0%B0+%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%8B%2C+%D0%96%D0%B8%D0%B1%D0%B5%D0%BA+%D0%B6%D0%BE%D0%BB%D1%83+53%2C+%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA"
+      target="_blank"
+    >
+      КАРТАДАН КӨРҮҮ
+    </a>
+
+  </div>
+
 </section>
 
-<section>
-<div class="wrap"><div class="card">
-<h2>БАКТЫЛУУ КҮНҮБҮЗГӨ ЧЕЙИН</h2>
-<div class="gold"></div>
-<div class="count">
-<div class="box"><span class="num" id="d">00</span><span class="lab">КҮН</span></div>
-<div class="box"><span class="num" id="h">00</span><span class="lab">СААТ</span></div>
-<div class="box"><span class="num" id="m">00</span><span class="lab">МҮНӨТ</span></div>
-<div class="box"><span class="num" id="s">00</span><span class="lab">СЕКУНД</span></div>
-</div>
-<p style="margin-top:25px">Бул өзгөчө көз ирмемди бирге күтөлү. 🤍</p>
-</div></div>
+
+<!-- COUNTDOWN -->
+<section id="countdown" class="image-section">
+
+  <div class="overlay">
+
+    <div class="section-title">
+      БАКТЫЛУУ КҮНҮБҮЗГӨ ЧЕЙИН
+    </div>
+
+    <div class="count-box">
+
+      <div class="count-item">
+        <span class="number" id="days">00</span>
+        <span class="label">КҮН</span>
+      </div>
+
+      <div class="count-item">
+        <span class="number" id="hours">00</span>
+        <span class="label">СААТ</span>
+      </div>
+
+      <div class="count-item">
+        <span class="number" id="minutes">00</span>
+        <span class="label">МҮНӨТ</span>
+      </div>
+
+      <div class="count-item">
+        <span class="number" id="seconds">00</span>
+        <span class="label">СЕКУНД</span>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="main-text">
+      Бул өзгөчө көз ирмемди<br>
+      бирге күтөлү. 🤍
+    </div>
+
+  </div>
+
 </section>
 
-<section>
-<div class="wrap"><div class="card">
-<h2>ТОЙГО КЕЛЕСИЗБИ?</h2>
-<div class="gold"></div>
-<p>Сиздин катышууңуз биз үчүн чоң мааниге ээ.</p>
 
-<label>Атыңыз-жөнүңүз</label>
-<input id="name" placeholder="Атыңыз-жөнүңүз">
+<!-- RSVP -->
+<section id="rsvp" class="image-section">
 
-<label>Катышууңуз</label>
-<div class="radio"><input type="radio" name="a" value="Ооба, сөзсүз келем" checked> Ооба, сөзсүз келем</div>
-<div class="radio"><input type="radio" name="a" value="Тилекке каршы, келе албайм"> Тилекке каршы, келе албайм</div>
+  <div class="overlay">
 
-<label>Канча адам менен келесиз?</label>
-<select id="people">
-<option>1 адам</option>
-<option>2 адам</option>
-<option>3 адам</option>
-<option>4 адам</option>
-</select>
+    <div class="section-title">
+      ТОЙГО КЕЛЕСИЗБИ?
+    </div>
 
-<button class="send" id="send">ЖООП ЖӨНӨТҮҮ</button>
-</div></div>
+    <div class="main-text" style="font-size:17px;">
+      Сиздин катышууңуз биз үчүн<br>
+      чоң мааниге ээ.
+    </div>
+
+    <div class="divider"></div>
+
+    <form class="form" id="rsvpForm">
+
+      <label for="name">
+        Атыңыз-жөнүңүз
+      </label>
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Атыңыз-жөнүңүз"
+        required
+      >
+
+      <label>
+        Катышасызбы?
+      </label>
+
+      <div class="radio-group">
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="attendance"
+            value="Ооба, сөзсүз келем"
+            required
+          >
+          Ооба, сөзсүз келем
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="attendance"
+            value="Тилекке каршы, келе албайм"
+          >
+          Тилекке каршы, келе албайм
+        </label>
+
+      </div>
+
+      <label for="guests">
+        Канча адам менен келесиз?
+      </label>
+
+      <select id="guests">
+        <option value="1">1 адам</option>
+        <option value="2">2 адам</option>
+        <option value="3">3 адам</option>
+        <option value="4">4 адам</option>
+      </select>
+
+      <button class="send-btn" type="submit">
+        ЖООП ЖӨНӨТҮҮ
+      </button>
+
+    </form>
+
+  </div>
+
 </section>
 
-<section>
-<div class="wrap"><div class="card">
-<p style="font-family:Georgia,serif;font-size:23px;line-height:1.7">
-Бактыбызды бөлүшүп,<br>
-бул өзгөчө күнүбүздүн күбөсү болуңуздар.
-</p>
-<div class="gold"></div>
-<div class="names">Сүйүү менен,<br>Чынгыз & Жазгүл</div>
-<div style="font-size:28px;margin-top:18px">🌹</div>
-<p style="margin-top:8px">23.09.2026</p>
-</div></div>
+
+<!-- FINAL -->
+<section id="final" class="image-section">
+
+  <div class="overlay">
+
+    <div class="final-text">
+
+      Бактыбызды бөлүшүп,<br>
+      бул өзгөчө күнүбүздүн<br>
+      күбөсү болуңуздар.
+
+      <div class="divider"></div>
+
+      <b>Сүйүү менен,<br>
+      Чынгыз & Жазгүл</b>
+
+      <br><br>
+
+      🌹 23.09.2026
+
+    </div>
+
+  </div>
+
 </section>
 
-</main>
 
 <script>
-const openBtn=document.getElementById('openBtn');
-const env=document.getElementById('env');
-const video=document.getElementById('video');
-const opening=document.getElementById('opening');
-const site=document.getElementById('site');
 
-openBtn.onclick=()=>{
-env.style.display='none';
-openBtn.style.display='none';
-video.style.display='block';
-video.play().catch(()=>showSite());
-video.onended=showSite;
-};
+/* MUSIC */
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
-function showSite(){
-opening.style.display='none';
-site.style.display='block';
-document.body.style.overflowY='auto';
+let musicPlaying = false;
+
+musicBtn.addEventListener("click", function(){
+
+  if(musicPlaying){
+
+    music.pause();
+    musicBtn.textContent = "♫";
+    musicPlaying = false;
+
+  }else{
+
+    music.play().then(() => {
+      musicBtn.textContent = "🔊";
+      musicPlaying = true;
+    }).catch(() => {});
+
+  }
+
+});
+
+
+/* OPENING VIDEO */
+const openBtn = document.getElementById("openBtn");
+const closedEnvelope = document.getElementById("closedEnvelope");
+const openingVideo = document.getElementById("openingVideo");
+
+openBtn.addEventListener("click", function(){
+
+  closedEnvelope.style.display = "none";
+  openBtn.style.display = "none";
+
+  openingVideo.style.display = "block";
+
+  music.play().then(() => {
+    musicPlaying = true;
+    musicBtn.textContent = "🔊";
+  }).catch(() => {});
+
+  openingVideo.currentTime = 0;
+  openingVideo.play();
+
+});
+
+
+/* AFTER VIDEO */
+openingVideo.addEventListener("ended", function(){
+
+  document.getElementById("opening").style.display = "none";
+
+  document.getElementById("couple").scrollIntoView({
+    behavior:"smooth"
+  });
+
+});
+
+
+/* COUNTDOWN */
+const weddingDate = new Date("2026-09-23T17:00:00+06:00").getTime();
+
+function updateCountdown(){
+
+  const now = new Date().getTime();
+
+  const difference = weddingDate - now;
+
+  if(difference <= 0){
+
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+
+    return;
+  }
+
+  const days = Math.floor(
+    difference / (1000 * 60 * 60 * 24)
+  );
+
+  const hours = Math.floor(
+    (difference / (1000 * 60 * 60)) % 24
+  );
+
+  const minutes = Math.floor(
+    (difference / (1000 * 60)) % 60
+  );
+
+  const seconds = Math.floor(
+    (difference / 1000) % 60
+  );
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2,"0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2,"0");
+
 }
 
-const music=document.getElementById('music');
-const musicBtn=document.getElementById('musicBtn');
-musicBtn.onclick=()=>{
-if(music.paused){music.play();musicBtn.textContent='❚❚'}
-else{music.pause();musicBtn.textContent='♫'}
-};
+updateCountdown();
+setInterval(updateCountdown,1000);
 
-const target=new Date('2026-09-23T17:00:00+06:00').getTime();
 
-function timer(){
-let x=target-Date.now();
-if(x<0)x=0;
-document.getElementById('d').textContent=Math.floor(x/86400000);
-document.getElementById('h').textContent=Math.floor(x%86400000/3600000);
-document.getElementById('m').textContent=Math.floor(x%3600000/60000);
-document.getElementById('s').textContent=Math.floor(x%60000/1000);
-}
-timer();
-setInterval(timer,1000);
+/* RSVP WHATSAPP */
+document.getElementById("rsvpForm").addEventListener("submit", function(e){
 
-document.getElementById('send').onclick=()=>{
-let name=document.getElementById('name').value.trim();
-if(!name){alert('Атыңыз-жөнүңүздү жазыңыз.');return}
-let attend=document.querySelector('input[name="a"]:checked').value;
-let people=document.getElementById('people').value;
-let text=`Чынгыз & Жазгүлдүн тоюна жооп:\n\nАты-жөнү: ${name}\nКатышуу: ${attend}\nКоноктордун саны: ${people}`;
-window.open('https://wa.me/996557166799?text='+encodeURIComponent(text),'_blank');
-};
+  e.preventDefault();
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const attendance =
+    document.querySelector(
+      'input[name="attendance"]:checked'
+    ).value;
+
+  const guests =
+    document.getElementById("guests").value;
+
+  const message =
+`Саламатсыздарбы!
+
+Тойго чакыруу боюнча жооп:
+
+Аты-жөнү: ${name}
+Катышуусу: ${attendance}
+Келген адамдардын саны: ${guests}
+
+Чынгыз & Жазгүл
+23.09.2026`;
+
+  const phone = "996557166799";
+
+  const whatsapp =
+    "https://wa.me/" +
+    phone +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsapp,"_blank");
+
+});
+
 </script>
 
 </body>
 </html>
-           
-          
