@@ -3,10 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f3ea">
 
 <title>Чынгыз & Жазгүл</title>
 
 <style>
+:root{
+  --cream:#faf6ee;
+  --cream2:#f4ede1;
+  --white:#fffdf9;
+  --gold:#b08a45;
+  --gold2:#d5b36a;
+  --text:#6f5a3d;
+  --dark:#493b29;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -18,845 +29,415 @@ html{
 }
 
 body{
-  background:#fbf8f2;
-  color:#6d5637;
+  background:var(--cream);
+  color:var(--text);
   font-family:Georgia,"Times New Roman",serif;
   overflow-x:hidden;
 }
 
-section{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:35px 18px;
-  position:relative;
-}
-
-.content{
-  width:100%;
-  max-width:520px;
-  text-align:center;
-}
-
-/* GOLD */
-.gold{
-  color:#b08a45;
-}
-
-/* OPENING */
-#opening{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at center,#fffdf9 0%,#f7f0e5 100%);
-  flex-direction:column;
-}
-
-.envelope-box{
-  width:90%;
-  max-width:360px;
-  position:relative;
-}
-
-.closed-envelope{
-  width:100%;
-  height:220px;
-  background:linear-gradient(145deg,#fffdf9,#eee2d0);
-  border:1px solid #c9a96b;
-  box-shadow:0 15px 40px rgba(115,83,35,.18);
-  position:relative;
-  overflow:hidden;
-}
-
-.closed-envelope:before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:0;
-  height:0;
-  border-left:50% solid transparent;
-  border-right:50% solid transparent;
-  border-top:120px solid #eadcc8;
-}
-
-.seal{
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  border:1px solid #c39b55;
-  background:#fffaf2;
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  color:#b08a45;
-  z-index:3;
-}
-
-.open-title{
-  margin-top:28px;
-  font-size:28px;
-  letter-spacing:3px;
-  color:#9a7439;
-}
-
-.open-subtitle{
-  margin-top:12px;
-  font-size:16px;
-  line-height:1.7;
-  color:#8b7556;
-}
-
-.open-btn{
-  margin-top:25px;
-  padding:15px 28px;
-  border:1px solid #b89556;
-  border-radius:30px;
-  background:#fffaf2;
-  color:#8c6830;
+button,
+input,
+select{
   font-family:inherit;
-  font-size:14px;
-  letter-spacing:1.5px;
-  cursor:pointer;
-  box-shadow:0 8px 22px rgba(120,90,40,.12);
 }
 
-.open-btn:active{
-  transform:scale(.98);
-}
-
-/* VIDEO */
-#openingVideo{
-  display:none;
-  width:100%;
-  max-width:520px;
-  height:auto;
-  border-radius:14px;
-  box-shadow:0 15px 45px rgba(80,60,30,.2);
-}
-
-.after-video{
-  display:none;
-  width:100%;
-}
-
-/* MUSIC */
 .music-btn{
   position:fixed;
   top:16px;
   right:16px;
-  z-index:1000;
-  width:46px;
-  height:46px;
+  width:42px;
+  height:42px;
   border-radius:50%;
-  border:1px solid #c5a365;
-  background:rgba(255,250,242,.94);
-  color:#9d7739;
-  font-size:19px;
-  cursor:pointer;
-  box-shadow:0 5px 20px rgba(90,65,30,.15);
+  border:1px solid rgba(176,138,69,.6);
+  background:rgba(255,253,249,.9);
+  color:var(--gold);
+  font-size:18px;
+  z-index:1000;
+  box-shadow:0 4px 15px rgba(80,60,30,.12);
 }
 
-/* IMAGE SECTIONS */
-.image-section{
-  background-position:center;
-  background-size:cover;
-  background-repeat:no-repeat;
+section{
+  padding:55px 15px;
 }
 
-.overlay{
+.section-card{
+  position:relative;
   width:100%;
-  max-width:520px;
-  padding:35px 24px;
-  background:rgba(255,252,246,.76);
-  border:1px solid rgba(183,145,75,.45);
-  box-shadow:0 12px 35px rgba(100,75,35,.10);
+  max-width:700px;
+  min-height:570px;
+  margin:auto;
+  border:1px solid rgba(176,138,69,.65);
+  border-radius:28px;
+  overflow:hidden;
+  background-color:var(--cream2);
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:
+    0 15px 45px rgba(80,60,30,.10),
+    inset 0 0 0 5px rgba(255,255,255,.45);
+}
+
+.section-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,250,241,.38);
+}
+
+.content-box{
+  position:relative;
+  z-index:2;
+  width:calc(100% - 30px);
+  max-width:570px;
+  padding:40px 22px;
+  text-align:center;
+  background:rgba(255,253,249,.78);
+  border:1px solid rgba(176,138,69,.45);
+  border-radius:22px;
+  backdrop-filter:blur(2px);
+  box-shadow:0 10px 30px rgba(80,60,30,.08);
+}
+
+.gold-line{
+  width:75px;
+  height:1px;
+  background:var(--gold);
+  margin:18px auto;
+}
+
+.small-title{
+  font-size:12px;
+  letter-spacing:3px;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+
+h2{
+  color:var(--gold);
+  font-size:27px;
+  font-weight:normal;
+  letter-spacing:2px;
+  line-height:1.35;
+}
+
+p{
+  line-height:1.8;
+}
+
+.main-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:13px 24px;
+  border:1px solid var(--gold);
+  border-radius:30px;
+  background:linear-gradient(135deg,#c8a35d,#a77d35);
+  color:white;
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-decoration:none;
+  box-shadow:0 7px 18px rgba(120,85,30,.20);
+  cursor:pointer;
+}
+
+.main-btn:active{
+  transform:scale(.98);
+}
+
+/* OPENING */
+
+#opening{
+  min-height:100svh;
+  padding:35px 15px 45px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at 50% 15%,#fffdf9 0,#faf6ee 48%,#f1e7d7 100%);
+}
+
+.opening-inner{
+  width:100%;
+  max-width:600px;
   text-align:center;
 }
 
-.section-title{
-  font-size:18px;
-  letter-spacing:3px;
-  color:#a17b3e;
-  margin-bottom:22px;
+.opening-label{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:4px;
+  margin-bottom:15px;
 }
 
-.main-text{
-  font-size:22px;
-  line-height:1.65;
-  color:#745d3d;
+.opening-title{
+  color:var(--gold);
+  font-size:36px;
+  font-weight:normal;
+  letter-spacing:4px;
+  margin-bottom:10px;
 }
 
-.names{
-  font-size:31px;
-  letter-spacing:3px;
-  color:#a27b3d;
-  margin:20px 0;
+.opening-subtitle{
+  font-size:15px;
+  line-height:1.7;
+  margin-bottom:10px;
 }
 
-.divider{
-  width:70px;
-  height:1px;
-  background:#bd9a59;
-  margin:20px auto;
+.hosts{
+  font-size:13px;
+  color:#8a7658;
+  margin-bottom:24px;
 }
 
-/* COUPLE */
-#couple{
-  background:#faf5ed;
+.opening-video-wrap{
+  position:relative;
+  width:min(92vw,480px);
+  aspect-ratio:9 / 14;
+  max-height:62svh;
+  margin:0 auto 22px;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(176,138,69,.7);
+  background:#f7f0e4;
+  box-shadow:
+    0 18px 45px rgba(70,50,25,.16),
+    inset 0 0 0 5px rgba(255,255,255,.5);
 }
 
-.couple-image{
+#openingVideo{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  background:#f7f0e4;
+  transform:scale(1.04);
+}
+
+.opening-video-shine{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border:5px solid rgba(255,255,255,.22);
+  border-radius:24px;
+}
+
+.couple-after{
+  display:none;
+  width:min(92vw,480px);
+  margin:0 auto 22px;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(176,138,69,.7);
+  background:white;
+  box-shadow:0 18px 45px rgba(70,50,25,.14);
+}
+
+.couple-after img{
   width:100%;
   display:block;
-  border-radius:8px;
-  box-shadow:0 12px 35px rgba(90,65,30,.18);
+}
+
+.open-btn{
+  margin-top:4px;
+}
+
+.open-note{
+  margin-top:14px;
+  font-size:11px;
+  color:#9a876c;
 }
 
 /* LOVE STORY */
-#love{
-  background-image:url("история любви.jpg");
+
+.love-bg{
+  background-image:url("история%20любви.jpg");
 }
 
 /* DATE */
-#date{
+
+.date-bg{
   background-image:url("дата.jpg");
 }
 
-.date{
-  font-size:29px;
+.date-number{
+  font-size:31px;
   letter-spacing:3px;
-  color:#9d7638;
-  margin:15px 0;
+  color:var(--gold);
+  margin:12px 0;
 }
 
-.time{
-  font-size:32px;
-  color:#a27b3e;
-  letter-spacing:2px;
+.date-time{
+  font-size:24px;
+  color:var(--dark);
+  letter-spacing:4px;
 }
 
 /* VENUE */
-#venue{
-  background:#fbf7ef;
+
+.venue-bg{
+  background-image:url("almaz.jpg");
 }
 
 .venue-name{
-  font-size:26px;
-  line-height:1.5;
-  color:#967039;
-  margin:18px 0;
+  font-size:25px;
+  color:var(--gold);
+  line-height:1.4;
+  margin:10px 0;
 }
 
 .address{
-  font-size:17px;
+  font-size:15px;
   line-height:1.8;
-  color:#79664a;
-}
-
-.map-btn{
-  display:inline-block;
-  margin-top:25px;
-  padding:14px 26px;
-  border-radius:30px;
-  border:1px solid #b99451;
-  background:#fffaf2;
-  color:#8d6932;
-  text-decoration:none;
-  letter-spacing:1px;
+  margin-bottom:22px;
 }
 
 /* COUNTDOWN */
-#countdown{
-  background-image:url("дата.jpg");
+
+.countdown-bg{
+  background-image:url("meerim.jpg");
 }
 
-.count-box{
+.countdown{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:7px;
-  margin-top:25px;
+  margin:25px 0;
 }
 
-.count-item{
-  background:rgba(255,252,247,.88);
-  border:1px solid rgba(183,145,75,.5);
-  padding:13px 4px;
+.time-box{
+  padding:14px 3px;
+  border:1px solid rgba(176,138,69,.5);
+  border-radius:12px;
+  background:rgba(255,253,249,.85);
 }
 
-.number{
-  font-size:25px;
-  color:#a17a3c;
+.time-number{
   display:block;
+  color:var(--gold);
+  font-size:22px;
+  line-height:1.2;
 }
 
-.label{
+.time-label{
+  display:block;
+  margin-top:5px;
   font-size:9px;
   letter-spacing:1px;
-  color:#897252;
-  margin-top:5px;
-  display:block;
+  color:#8d7858;
 }
 
 /* RSVP */
-#rsvp{
+
+.rsvp-bg{
   background-image:url("rsvp.jpg");
 }
 
-.form{
+.rsvp-text{
+  font-size:14px;
+  margin-bottom:24px;
+}
+
+.form-group{
+  margin-bottom:14px;
   text-align:left;
 }
 
-.form label{
+.form-group label{
   display:block;
-  margin:14px 0 7px;
-  font-size:14px;
-  color:#795f3d;
+  font-size:12px;
+  color:var(--gold);
+  margin-bottom:6px;
+  letter-spacing:.5px;
 }
 
-.form input,
-.form select{
+.form-group input,
+.form-group select{
   width:100%;
-  padding:14px;
-  border:1px solid #cdb88d;
-  border-radius:10px;
-  background:#fffdf9;
-  color:#6f5839;
-  font-family:inherit;
-  font-size:15px;
+  height:48px;
+  padding:0 14px;
+  border:1px solid rgba(176,138,69,.45);
+  border-radius:12px;
+  background:rgba(255,255,255,.9);
+  color:var(--dark);
   outline:none;
+  font-size:14px;
 }
 
-.radio-group{
+.form-group input:focus,
+.form-group select:focus{
+  border-color:var(--gold);
+}
+
+.radio-row{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
 }
 
 .radio-option{
-  display:flex !important;
+  display:flex;
   align-items:center;
   gap:8px;
-  margin:4px 0 !important;
+  padding:10px 12px;
+  border:1px solid rgba(176,138,69,.3);
+  border-radius:10px;
+  background:rgba(255,255,255,.75);
+  font-size:13px;
 }
 
 .radio-option input{
-  width:auto;
-}
-
-.send-btn{
-  width:100%;
-  margin-top:22px;
-  padding:15px;
-  border:0;
-  border-radius:30px;
-  background:#b18a48;
-  color:white;
-  font-family:inherit;
-  font-size:15px;
-  letter-spacing:1px;
-  cursor:pointer;
+  accent-color:var(--gold);
 }
 
 /* FINAL */
-#final{
+
+.final-bg{
   background-image:url("final.jpg");
+  min-height:650px;
 }
 
 .final-text{
-  font-size:22px;
-  line-height:1.8;
-  color:#735b3b;
+  font-size:16px;
+  line-height:2;
 }
 
-@media(max-width:400px){
-
-  .open-title{
-    font-size:24px;
-  }
-
-  .names{
-    font-size:27px;
-  }
-
-  .main-text{
-    font-size:19px;
-  }
-
-  .date{
-    font-size:24px;
-  }
-
-  .count-box{
-    gap:4px;
-  }
-
-  .number{
-    font-size:21px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- MUSIC -->
-<button class="music-btn" id="musicBtn">♫</button>
-
-<audio id="music" loop>
-  <source src="музыка.mp3" type="audio/mpeg">
-</audio>
-
-
-<!-- OPENING -->
-<section id="opening">
-
-  <div class="content">
-
-    <div class="envelope-box" id="closedEnvelope">
-
-      <div class="closed-envelope">
-        <div class="seal">♥</div>
-      </div>
-
-    </div>
-
-    <div class="open-title">
-      ЧЫНГЫЗ & ЖАЗГҮЛ
-    </div>
-
-    <div class="open-subtitle">
-      Үйлөнүү үлпөт тоюбузга<br>
-      сиздерди чакырабыз
-    </div>
-
-    <button class="open-btn" id="openBtn">
-      ЧАКЫРУУ КАТЫН АЧУУ
-    </button>
-
-    <video id="openingVideo" playsinline>
-      <source src="envelope.mp4" type="video/mp4">
-    </video>
-
-  </div>
-
-</section>
-
-
-<!-- COUPLE -->
-<section id="couple">
-
-  <div class="content">
-
-    <img
-      src="пара.jpg"
-      class="couple-image"
-      alt="Чынгыз жана Жазгүл"
-    >
-
-  </div>
-
-</section>
-
-
-<!-- LOVE STORY -->
-<section id="love" class="image-section">
-
-  <div class="overlay">
-
-    <div class="section-title">
-      LOVE STORY
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="main-text">
-      Кээ бир адамдар жашообузга<br>
-      жөн гана жолугуу үчүн эмес,<br>
-      өмүр бою жанында болуу үчүн келет.
-      <br><br>
-      Биз бири-бирибизди таптык.<br>
-      Эми алдыда — бирге баса турган<br>
-      бүтүндөй бир өмүр. 🤍
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DATE -->
-<section id="date" class="image-section">
-
-  <div class="overlay">
-
-    <div class="section-title">
-      БИЗДИН КУБАНЫЧТУУ КҮНҮБҮЗ
-    </div>
-
-    <div class="main-text">
-      Биздин кубанычтуу күнүбүздө<br>
-      сиздерди күтөбүз.
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="date">
-      23 СЕНТЯБРЬ 2026
-    </div>
-
-    <div class="time">
-      17:00
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- VENUE -->
-<section id="venue">
-
-  <div class="overlay">
-
-    <div class="section-title">
-      БИЗДИН БАКТЫЛУУ КҮНҮБҮЗДҮН ДАРЕГИ
-    </div>
-
-    <div class="venue-name">
-      «АЛТЫН КАЗЫНА» РЕСТОРАНЫ
-    </div>
-
-    <div class="address">
-      Жибек жолу көчөсү, 53<br>
-      Бишкек шаары
-    </div>
-
-    <a
-      class="map-btn"
-      href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D1%82%D1%8B%D0%BD+%D0%9A%D0%B0%D0%B7%D1%8B%D0%BD%D0%B0+%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%8B%2C+%D0%96%D0%B8%D0%B1%D0%B5%D0%BA+%D0%B6%D0%BE%D0%BB%D1%83+53%2C+%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA"
-      target="_blank"
-    >
-      КАРТАДАН КӨРҮҮ
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- COUNTDOWN -->
-<section id="countdown" class="image-section">
-
-  <div class="overlay">
-
-    <div class="section-title">
-      БАКТЫЛУУ КҮНҮБҮЗГӨ ЧЕЙИН
-    </div>
-
-    <div class="count-box">
-
-      <div class="count-item">
-        <span class="number" id="days">00</span>
-        <span class="label">КҮН</span>
-      </div>
-
-      <div class="count-item">
-        <span class="number" id="hours">00</span>
-        <span class="label">СААТ</span>
-      </div>
-
-      <div class="count-item">
-        <span class="number" id="minutes">00</span>
-        <span class="label">МҮНӨТ</span>
-      </div>
-
-      <div class="count-item">
-        <span class="number" id="seconds">00</span>
-        <span class="label">СЕКУНД</span>
-      </div>
-
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="main-text">
-      Бул өзгөчө көз ирмемди<br>
-      бирге күтөлү. 🤍
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- RSVP -->
-<section id="rsvp" class="image-section">
-
-  <div class="overlay">
-
-    <div class="section-title">
-      ТОЙГО КЕЛЕСИЗБИ?
-    </div>
-
-    <div class="main-text" style="font-size:17px;">
-      Сиздин катышууңуз биз үчүн<br>
-      чоң мааниге ээ.
-    </div>
-
-    <div class="divider"></div>
-
-    <form class="form" id="rsvpForm">
-
-      <label for="name">
-        Атыңыз-жөнүңүз
-      </label>
-
-      <input
-        type="text"
-        id="name"
-        placeholder="Атыңыз-жөнүңүз"
-        required
-      >
-
-      <label>
-        Катышасызбы?
-      </label>
-
-      <div class="radio-group">
-
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="attendance"
-            value="Ооба, сөзсүз келем"
-            required
-          >
-          Ооба, сөзсүз келем
-        </label>
-
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="attendance"
-            value="Тилекке каршы, келе албайм"
-          >
-          Тилекке каршы, келе албайм
-        </label>
-
-      </div>
-
-      <label for="guests">
-        Канча адам менен келесиз?
-      </label>
-
-      <select id="guests">
-        <option value="1">1 адам</option>
-        <option value="2">2 адам</option>
-        <option value="3">3 адам</option>
-        <option value="4">4 адам</option>
-      </select>
-
-      <button class="send-btn" type="submit">
-        ЖООП ЖӨНӨТҮҮ
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-
-<!-- FINAL -->
-<section id="final" class="image-section">
-
-  <div class="overlay">
-
-    <div class="final-text">
-
-      Бактыбызды бөлүшүп,<br>
-      бул өзгөчө күнүбүздүн<br>
-      күбөсү болуңуздар.
-
-      <div class="divider"></div>
-
-      <b>Сүйүү менен,<br>
-      Чынгыз & Жазгүл</b>
-
-      <br><br>
-
-      🌹 23.09.2026
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<script>
-
-/* MUSIC */
-const music = document.getElementById("music");
-const musicBtn = document.getElementById("musicBtn");
-
-let musicPlaying = false;
-
-musicBtn.addEventListener("click", function(){
-
-  if(musicPlaying){
-
-    music.pause();
-    musicBtn.textContent = "♫";
-    musicPlaying = false;
-
-  }else{
-
-    music.play().then(() => {
-      musicBtn.textContent = "🔊";
-      musicPlaying = true;
-    }).catch(() => {});
-
-  }
-
-});
-
-
-/* OPENING VIDEO */
-const openBtn = document.getElementById("openBtn");
-const closedEnvelope = document.getElementById("closedEnvelope");
-const openingVideo = document.getElementById("openingVideo");
-
-openBtn.addEventListener("click", function(){
-
-  closedEnvelope.style.display = "none";
-  openBtn.style.display = "none";
-
-  openingVideo.style.display = "block";
-
-  music.play().then(() => {
-    musicPlaying = true;
-    musicBtn.textContent = "🔊";
-  }).catch(() => {});
-
-  openingVideo.currentTime = 0;
-  openingVideo.play();
-
-});
-
-
-/* AFTER VIDEO */
-openingVideo.addEventListener("ended", function(){
-
-  document.getElementById("opening").style.display = "none";
-
-  document.getElementById("couple").scrollIntoView({
-    behavior:"smooth"
-  });
-
-});
-
-
-/* COUNTDOWN */
-const weddingDate = new Date("2026-09-23T17:00:00+06:00").getTime();
-
-function updateCountdown(){
-
-  const now = new Date().getTime();
-
-  const difference = weddingDate - now;
-
-  if(difference <= 0){
-
-    document.getElementById("days").textContent = "00";
-    document.getElementById("hours").textContent = "00";
-    document.getElementById("minutes").textContent = "00";
-    document.getElementById("seconds").textContent = "00";
-
-    return;
-  }
-
-  const days = Math.floor(
-    difference / (1000 * 60 * 60 * 24)
-  );
-
-  const hours = Math.floor(
-    (difference / (1000 * 60 * 60)) % 24
-  );
-
-  const minutes = Math.floor(
-    (difference / (1000 * 60)) % 60
-  );
-
-  const seconds = Math.floor(
-    (difference / 1000) % 60
-  );
-
-  document.getElementById("days").textContent =
-    String(days).padStart(2,"0");
-
-  document.getElementById("hours").textContent =
-    String(hours).padStart(2,"0");
-
-  document.getElementById("minutes").textContent =
-    String(minutes).padStart(2,"0");
-
-  document.getElementById("seconds").textContent =
-    String(seconds).padStart(2,"0");
-
+.final-names{
+  color:var(--gold);
+  font-size:25px;
+  margin-top:10px;
 }
 
-updateCountdown();
-setInterval(updateCountdown,1000);
+.rose{
+  font-size:28px;
+  margin-top:16px;
+}
 
+/* FOOTER */
 
-/* RSVP WHATSAPP */
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
+footer{
+  text-align:center;
+  padding:35px 15px 45px;
+  color:#a18b6d;
+  font-size:11px;
+  letter-spacing:1px;
+}
 
-  e.preventDefault();
+/* MOBILE */
 
-  const name =
-    document.getElementById("name").value.trim();
+@media(max-width:430px){
 
-  const attendance =
-    document.querySelector(
-      'input[name="attendance"]:checked'
-    ).value;
+  section{
+    padding:42px 11px;
+  }
 
-  const guests =
-    document.getElementById("guests").value;
+  .opening-title{
+    font-size:30px;
+    letter-spacing:3px;
+  }
 
-  const message =
-`Саламатсыздарбы!
-
-Тойго чакыруу боюнча жооп:
-
-Аты-жөнү: ${name}
-Катышуусу: ${attendance}
-Келген адамдардын саны: ${guests}
-
-Чынгыз & Жазгүл
-23.09.2026`;
-
-  const phone = "996557166799";
-
-  const whatsapp =
-    "https://wa.me/" +
-    phone +
-    "?text=" +
-    encodeURIComponent(message);
-
-  window.open(whatsapp,"_blank");
-
-});
-
-</script>
-
-</body>
-</html>
+  .opening-subtitle{
+   
