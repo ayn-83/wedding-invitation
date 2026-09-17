@@ -251,7 +251,30 @@ p{
   color:#9a876c;
 }
 
-/* LOVE STORY */
+/* LOVE STORY */.couple-photo{
+  position:relative;
+  width:100%;
+}
+
+.couple-photo img{
+  width:100%;
+  display:block;
+}
+
+.couple-names{
+  position:absolute;
+  left:50%;
+  top:70%;
+  transform:translate(-50%,-50%);
+  width:55%;
+  text-align:center;
+  color:#8f6828;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
 
 .love-bg{
   background-image:url("love.story.jpg");
@@ -528,8 +551,11 @@ footer{
     </div>
 
     <div class="couple-after" id="coupleAfter">
-      <img src="couple.jpg" alt="Чынгыз жана Жазгүл">
-    </div>
+  <div class="couple-photo">
+    <img src="couple.jpg" alt="Чынгыз жана Жазгүл">
+    <div class="couple-names">ЖАЗГҮЛ &amp; ЧЫНГЫЗ</div>
+  </div>
+</div>
 
     <button class="main-btn open-btn" id="openInvitation">
       ЧАКЫРУУ КАТЫН АЧУУ
