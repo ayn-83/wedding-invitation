@@ -440,4 +440,585 @@ footer{
   }
 
   .opening-subtitle{
-   
+    font-size:14px;
+  }
+
+  .section-card{
+    min-height:540px;
+    border-radius:23px;
+  }
+
+  .content-box{
+    width:calc(100% - 22px);
+    padding:34px 16px;
+    border-radius:18px;
+  }
+
+  h2{
+    font-size:23px;
+  }
+
+  .countdown{
+    gap:5px;
+  }
+
+  .time-number{
+    font-size:19px;
+  }
+
+  .time-label{
+    font-size:8px;
+  }
+
+  .venue-name{
+    font-size:21px;
+  }
+
+  .final-bg{
+    min-height:590px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<button class="music-btn" id="musicBtn" aria-label="Музыканы күйгүзүү">♫</button>
+
+<audio id="music" loop preload="auto">
+  <source src="музыка.mp3" type="audio/mpeg">
+</audio>
+
+<!-- OPENING -->
+
+<section id="opening">
+
+  <div class="opening-inner">
+
+    <div class="opening-label">
+      ҮЙЛӨНҮҮ ҮЛПӨТ ТОЮ
+    </div>
+
+    <h1 class="opening-title">
+      ЧЫНГЫЗ & ЖАЗГҮЛ
+    </h1>
+
+    <p class="opening-subtitle">
+      Үйлөнүү үлпөт тоюбузга<br>
+      сиздерди чакырабыз
+    </p>
+
+    <div class="hosts">
+      Айша & Кимия
+    </div>
+
+    <div class="opening-video-wrap" id="videoWrap">
+
+      <video
+        id="openingVideo"
+        playsinline
+        preload="auto"
+        muted
+      >
+        <source src="envelope.mp4" type="video/mp4">
+      </video>
+
+      <div class="opening-video-shine"></div>
+
+    </div>
+
+    <div class="couple-after" id="coupleAfter">
+      <img src="пара.jpg" alt="Чынгыз жана Жазгүл">
+    </div>
+
+    <button class="main-btn open-btn" id="openInvitation">
+      ЧАКЫРУУ КАТЫН АЧУУ
+    </button>
+
+    <div class="open-note">
+      Чакыруу катын ачуу үчүн басыңыз
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- LOVE STORY -->
+
+<section>
+
+  <div class="section-card love-bg">
+
+    <div class="content-box">
+
+      <div class="small-title">
+        LOVE STORY
+      </div>
+
+      <h2>Биздин сүйүү баяныбыз</h2>
+
+      <div class="gold-line"></div>
+
+      <p>
+        Кээ бир адамдар жашообузга<br>
+        жөн гана жолугуу үчүн эмес,<br>
+        өмүр бою жаныңда болуу үчүн келет.
+        <br><br>
+        Биз бири-бирибизди таптык.<br>
+        Эми алдыда — бирге баса турган<br>
+        бүтүндөй бир өмүр. 🤍
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DATE -->
+
+<section>
+
+  <div class="section-card date-bg">
+
+    <div class="content-box">
+
+      <div class="small-title">
+        КҮНҮ ЖАНА УБАКТЫСЫ
+      </div>
+
+      <h2>
+        Биздин кубанычтуу күнүбүздө<br>
+        сиздерди күтөбүз.
+      </h2>
+
+      <div class="gold-line"></div>
+
+      <div class="date-number">
+        23 СЕНТЯБРЬ 2026
+      </div>
+
+      <div class="date-time">
+        17:00
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- VENUE -->
+
+<section>
+
+  <div class="section-card venue-bg">
+
+    <div class="content-box">
+
+      <div class="small-title">
+        ТОЙДУН ДАРЕГИ
+      </div>
+
+      <h2>
+        Биздин бактылуу<br>
+        күнүбүздүн дареги.
+      </h2>
+
+      <div class="gold-line"></div>
+
+      <div class="venue-name">
+        «АЛТЫН КАЗЫНА»<br>
+        РЕСТОРАНЫ
+      </div>
+
+      <div class="address">
+        Жибек жолу көчөсү, 53<br>
+        Бишкек шаары
+      </div>
+
+      <a
+        class="main-btn"
+        href="https://www.google.com/maps/search/?api=1&query=%C2%AB%D0%90%D0%BB%D1%82%D1%8B%D0%BD%20%D0%9A%D0%B0%D0%B7%D1%8B%D0%BD%D0%B0%C2%BB%20%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%8B%2C%20%D0%96%D0%B8%D0%B1%D0%B5%D0%BA%20%D0%B6%D0%BE%D0%BB%D1%83%2053%2C%20%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA"
+        target="_blank"
+        rel="noopener"
+      >
+        КАРТАДАН КӨРҮҮ
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- COUNTDOWN -->
+
+<section>
+
+  <div class="section-card countdown-bg">
+
+    <div class="content-box">
+
+      <div class="small-title">
+        БАКТЫЛУУ КҮНҮБҮЗГӨ ЧЕЙИН
+      </div>
+
+      <h2>
+        Тойго чейин
+      </h2>
+
+      <div class="gold-line"></div>
+
+      <div class="countdown">
+
+        <div class="time-box">
+          <span class="time-number" id="days">00</span>
+          <span class="time-label">КҮН</span>
+        </div>
+
+        <div class="time-box">
+          <span class="time-number" id="hours">00</span>
+          <span class="time-label">СААТ</span>
+        </div>
+
+        <div class="time-box">
+          <span class="time-number" id="minutes">00</span>
+          <span class="time-label">МҮНӨТ</span>
+        </div>
+
+        <div class="time-box">
+          <span class="time-number" id="seconds">00</span>
+          <span class="time-label">СЕКУНД</span>
+        </div>
+
+      </div>
+
+      <p>
+        Бул өзгөчө көз ирмемди<br>
+        бирге күтөлү. 🤍
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RSVP -->
+
+<section>
+
+  <div class="section-card rsvp-bg">
+
+    <div class="content-box">
+
+      <div class="small-title">
+        RSVP
+      </div>
+
+      <h2>
+        ТОЙГО КЕЛЕСИЗБИ?
+      </h2>
+
+      <div class="gold-line"></div>
+
+      <p class="rsvp-text">
+        Сиздин катышууңуз биз үчүн<br>
+        чоң мааниге ээ.
+      </p>
+
+      <form id="rsvpForm">
+
+        <div class="form-group">
+          <label for="guestName">
+            Аты-жөнүңүз
+          </label>
+
+          <input
+            type="text"
+            id="guestName"
+            placeholder="Аты-жөнүңүздү жазыңыз"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+
+          <label>
+            Катышууңуз
+          </label>
+
+          <div class="radio-row">
+
+            <label class="radio-option">
+              <input
+                type="radio"
+                name="attendance"
+                value="Ооба, сөзсүз келем"
+                required
+              >
+              Ооба, сөзсүз келем
+            </label>
+
+            <label class="radio-option">
+              <input
+                type="radio"
+                name="attendance"
+                value="Тилекке каршы, келе албайм"
+              >
+              Тилекке каршы, келе албайм
+            </label>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="guestCount">
+            Келген адамдардын саны
+          </label>
+
+          <select id="guestCount" required>
+            <option value="1">1 адам</option>
+            <option value="2">2 адам</option>
+            <option value="3">3 адам</option>
+            <option value="4">4 адам</option>
+          </select>
+
+        </div>
+
+        <button
+          type="submit"
+          class="main-btn"
+          style="width:100%;margin-top:8px;"
+        >
+          ЖООП ЖӨНӨТҮҮ
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section>
+
+  <div class="section-card final-bg">
+
+    <div class="content-box">
+
+      <div class="small-title">
+        СҮЙҮҮ МЕНЕН
+      </div>
+
+      <p class="final-text">
+        Бактыбызды бөлүшүп,<br>
+        бул өзгөчө күнүбүздүн<br>
+        күбөсү болуңуздар.
+      </p>
+
+      <div class="gold-line"></div>
+
+      <div class="final-names">
+        Чынгыз & Жазгүл
+      </div>
+
+      <div class="rose">
+        🌹
+      </div>
+
+      <p style="margin-top:10px;">
+        23.09.2026
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  ЧЫНГЫЗ & ЖАЗГҮЛ · 23.09.2026
+</footer>
+
+
+<script>
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+music.volume = 0.35;
+
+musicBtn.addEventListener("click", function(){
+
+  if(music.paused){
+
+    music.play().then(function(){
+      musicBtn.textContent = "♫";
+    }).catch(function(){
+      alert("Музыканы ойнотуу мүмкүн болгон жок.");
+    });
+
+  }else{
+
+    music.pause();
+    musicBtn.textContent = "🔇";
+
+  }
+
+});
+
+
+/* OPENING VIDEO */
+
+const video = document.getElementById("openingVideo");
+const openButton = document.getElementById("openInvitation");
+const videoWrap = document.getElementById("videoWrap");
+const coupleAfter = document.getElementById("coupleAfter");
+
+openButton.addEventListener("click", function(){
+
+  openButton.style.display = "none";
+
+  document.querySelector(".open-note").style.display = "none";
+
+  music.play().catch(function(){});
+
+  video.muted = false;
+
+  video.play().catch(function(){
+
+    video.muted = true;
+
+    video.play().catch(function(){});
+
+  });
+
+});
+
+
+video.addEventListener("ended", function(){
+
+  videoWrap.style.display = "none";
+
+  coupleAfter.style.display = "block";
+
+});
+
+
+/* COUNTDOWN */
+
+const weddingDate =
+  new Date("2026-09-23T17:00:00+06:00").getTime();
+
+function updateCountdown(){
+
+  const now = new Date().getTime();
+
+  const difference = weddingDate - now;
+
+  if(difference <= 0){
+
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+
+    return;
+  }
+
+  const day = 1000 * 60 * 60 * 24;
+  const hour = 1000 * 60 * 60;
+  const minute = 1000 * 60;
+
+  const days = Math.floor(difference / day);
+
+  const hours =
+    Math.floor((difference % day) / hour);
+
+  const minutes =
+    Math.floor((difference % hour) / minute);
+
+  const seconds =
+    Math.floor((difference % minute) / 1000);
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2,"0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2,"0");
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
+
+
+/* RSVP → WHATSAPP */
+
+const rsvpForm = document.getElementById("rsvpForm");
+
+rsvpForm.addEventListener("submit", function(event){
+
+  event.preventDefault();
+
+  const name =
+    document.getElementById("guestName").value.trim();
+
+  const attendance =
+    document.querySelector(
+      'input[name="attendance"]:checked'
+    ).value;
+
+  const guests =
+    document.getElementById("guestCount").value;
+
+  const message =
+`Саламатсызбы!
+
+Тойго чакыруу боюнча жооп:
+
+Аты-жөнү: ${name}
+
+Катышуусу: ${attendance}
+
+Келген адамдардын саны: ${guests}
+
+Чынгыз & Жазгүл
+23.09.2026
+17:00`;
+
+  const whatsapp =
+    "https://wa.me/996557166799?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsapp,"_blank");
+
+});
+
+</script>
+
+</body>
+</html>
